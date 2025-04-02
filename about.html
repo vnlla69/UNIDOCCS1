@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About UNIDOCCS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 2rem;
+            width: 90vw;
+            max-width: 1200px;
+            height: 90vh;
+            max-height: 800px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            grid-column: 1 / -1;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 1rem;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        
+        .blockchain-badge {
+            display: inline-block;
+            background-color: #e8f4fc;
+            color: #2980b9;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .mission-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .team-section {
+            background-color: #f1f8fe;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: 100%;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        
+        .team-section h2, .idea-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .team-list {
+            padding-left: 1.2rem;
+        }
+        
+        .team-list li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .idea-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                height: auto;
+                max-height: none;
+            }
+            
+            body {
+                height: auto;
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="about-container">
+        <header class="header">
+            <h1>About UNIDOCCS</h1>
+            <span class="blockchain-badge">Powered by Blockchain Technology</span>
+        </header>
+        
+        <section class="mission-section">
+            <div>
+                <h2>Our Mission</h2>
+                <p>UNIDOCCS is a revolutionary blockchain-based platform for secure document and credential management. Our mission is to provide individuals and organizations with tamper-proof storage and easy verification of important documents using blockchain technology.</p>
+            </div>
+            
+            <div class="idea-section">
+                <h2>The Idea</h2>
+                <p>UNIDOCCS was born from recognizing the growing need for secure, verifiable document storage in education and professional sectors. Traditional systems are vulnerable to damage, forgery and loss, while blockchain technology offers immutable records and instant verification</p>
+            </div>
+        </section>
+        
+        <section class="team-section">
+            <h2>Development Team</h2>
+            <p>Created by Computer Science students at Baguio Central University:</p>
+            <ul class="team-list">
+                <li><strong>Jeff C. Pais</strong> - Project Lead  </li>
+                <li><strong>Name</strong> - title</li>
+                <li><strong>Name</strong> - title</li>
+                <li><strong>Name</strong> - title</li>
+                <li><strong>Name</strong> - title</li>
+            </ul>
+            <p>Faculty Advisor:<br><strong>NAME</strong></p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 UNIDOCCS. All rights reserved. UwU</p>
+    </footer>
+</body>
+</html>
