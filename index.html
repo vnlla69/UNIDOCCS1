@@ -10,17 +10,47 @@
     <header>
         <div class="logo">UNIDOCCS</div>
         <div class="auth-section">
-            <button class="auth-btn">Login</button>
+            <button class="auth-btn">Login/Connect Wallet</button>
         </div>
     </header>
     
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Documents</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#">Support</a></li>
-           
+            <li>
+                <a href="index.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <span>About</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                    <span>Docs</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                    </svg>
+                    <span>Help</span>
+                </a>
+            </li>
         </ul>
     </nav>
     
@@ -56,8 +86,156 @@
             </div>
         </section>
     </main>
+    
+<!-- Login Popup -->
+<div class="modal-overlay" id="loginModal">
+    <div class="login-modal">
+        <button class="modal-close" id="closeModal">&times;</button>
+        <h2>Connect to UNIDOCCS</h2>
+        
+        <div class="login-options">
+            <button class="login-option wallet" id="connectWallet">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 8H20C21.1046 8 22 8.89543 22 10V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6C2 4.89543 2.89543 4 4 4H18V8Z" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 8V4H6C4.89543 4 4 4.89543 4 6V18" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="14" y="12" width="6" height="4" rx="1" fill="#3498db"/>
+                </svg>
+                Connect Wallet
+            </button>
+            <button class="login-option" id="showTraditionalLogin">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="#2c3e50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 20C6 17.7909 7.79086 16 10 16H14C16.2091 16 18 17.7909 18 20" stroke="#2c3e50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Connect Email
+            </button>
+        </div>
+        
+        <form class="login-form" id="traditionalLoginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Login</button>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+            
+            <div class="form-footer">
+                Don't have an account? <a href="#" id="showSignup">Sign up</a>
+            </div>
+        </form>
+    </div>
+</div>
+ 
+<script>
+    // DOM Elements
+    const loginBtn = document.querySelector('.auth-btn');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+    const connectWalletBtn = document.getElementById('connectWallet');
+    const showTraditionalLogin = document.getElementById('showTraditionalLogin');
+    const traditionalLoginForm = document.getElementById('traditionalLoginForm');
+    const loginOptions = document.querySelector('.login-options');
+    const showSignup = document.getElementById('showSignup');
+
+    // Show popup when login button is clicked
+    loginBtn.addEventListener('click', () => {
+        loginModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        // Reset to show options when popup opens
+        loginOptions.style.display = 'flex';
+        traditionalLoginForm.classList.remove('active');
+    });
+
+    // Close popup
+    closeModal.addEventListener('click', closeModalHandler);
+    loginModal.addEventListener('click', (e) => {
+        if (e.target === loginModal) closeModalHandler();
+    });
+
+    // Wallet connection
+    connectWalletBtn.addEventListener('click', () => {
+        alert('Wallet connection functionality would be implemented here');
+        // In real implementation: connect to MetaMask or other wallet
+        closeModalHandler();
+        loginBtn.textContent = 'Connected: 0x...';
+    });
+
+    // Show email login form
+    showTraditionalLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginOptions.style.display = 'none';
+        traditionalLoginForm.classList.add('active');
+    });
+
+    // Form submission
+    traditionalLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        
+        // Reset errors
+        emailError.style.display = 'none';
+        passwordError.style.display = 'none';
+        
+        // Simple validation
+        let isValid = true;
+        
+        if (!email) {
+            emailError.textContent = 'Email is required';
+            emailError.style.display = 'block';
+            isValid = false;
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            emailError.textContent = 'Please enter a valid email';
+            emailError.style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!password) {
+            passwordError.textContent = 'Password is required';
+            passwordError.style.display = 'block';
+            isValid = false;
+        } else if (password.length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters';
+            passwordError.style.display = 'block';
+            isValid = false;
+        }
+        
+        if (isValid) {
+            // In a real implementation, send this to backend
+            console.log('Login attempt with:', { email, password });
+            alert('Login functionality would be implemented here\nEmail: ' + email);
+            closeModalHandler();
+            loginBtn.textContent = email; // Update button text
+        }
+    });
+
+    // Show signup (placeholder)
+    showSignup.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'signup.html';
+    });
+
+    function closeModalHandler() {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+</script>
     <footer>
         <p>&copy; 2025 UNIDOCCS - All rights reserved. UwU </p>
     </footer>
+
 </body>
 </html>
